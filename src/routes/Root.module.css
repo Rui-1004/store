@@ -28,7 +28,7 @@ img {
   height: auto;
 }
 
-.cartCount {
+.cartQuantity {
   display: inline-block;
   transform: translateY(-15px);
   background-color: #242424;

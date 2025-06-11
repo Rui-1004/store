@@ -5,7 +5,7 @@ export default function Error() {
     <>
       <h1>Error!</h1>
 
-      <p>Click <Link to="/">here</Link> to return to the Home page.</p>
+      <p>Click <Link to="/"><b>here</b></Link> to return to the Home page.</p>
     </>
     
   )

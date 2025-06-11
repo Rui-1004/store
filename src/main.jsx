@@ -6,6 +6,7 @@ import Root from './routes/Root';
 import Home from './routes/Home';
 import Shop from './routes/Shop';
 import Error from './routes/Error';
+import Cart from './routes/Cart';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home />},
       { path: "shop", element: <Shop />},
+      { path: "cart", element: <Cart />},
     ]
   }
 ])

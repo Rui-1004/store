@@ -1,23 +1,48 @@
 import { useState } from "react";
 import styles from "./Card.module.css";
 
-export default function Card({product}) {
+export default function Card({product, handleCart}) {
   const [quantity, setQuantity] = useState(1);
+  const [inputValue, setInputValue] = useState("1");
 
   const handleIncrement = () => {
-    setQuantity(quantity + 1);
+    setQuantity(q => {
+      const newQ = q + 1;
+      setInputValue(String(newQ));
+      return newQ;
+    });
   }
 
   const handleDecrement = () => {
-    setQuantity(quantity - 1);
+    setQuantity(q => {
+      const newQ = q - 1;
+      setInputValue(String(newQ));
+      return newQ;
+    });
   }
 
   const handleChange = (e) => {
-    let number = parseInt(e.target.value, 10);
+    setInputValue(e.target.value);
+  }
 
-    if (isNaN(number) || number < 1) return;
+  const handleBlur = () => {
+    let validQuantity = Math.floor(parseFloat(inputValue));
+    if (isNaN(validQuantity) || validQuantity < 1) {
+      validQuantity = 1;
+    }
+    setQuantity(validQuantity);
+    setInputValue(validQuantity);
+  };
 
-    setQuantity(number);
+  const handleClick = () => {
+    let validQuantity = Math.floor(parseFloat(inputValue));
+
+    if (isNaN(validQuantity) || validQuantity < 1) {
+      validQuantity = 1;
+    }
+
+    setQuantity(validQuantity);
+    handleCart(product, validQuantity);
   }
 
   return(
@@ -26,16 +51,16 @@ export default function Card({product}) {
         <img loading="lazy" src={product.image} alt="" />
       </div>
       <div className={styles.cardBody}>
-        <p>{product.title}</p>
-        <p>{product.price}€</p>
+        <h3>{product.title}</h3>
+        <p>{product.price.toFixed(2)}€</p>
       </div>
       <div className={styles.cardInputs}>
         <div className={styles.quantityInput}>
           <button className={styles.quantityMinus} onClick={handleDecrement} disabled={quantity === 1}>-</button>
-          <input name="quantity" type="number" onChange={handleChange} value={quantity} min={1} step={1} />
+          <input name="quantity" type="number" onChange={handleChange} onBlur={handleBlur} value={inputValue} min={1} step={1}/>
           <button className={styles.quantityPlus} onClick={handleIncrement}>+</button>
         </div>
-        <button className={styles.addToCart}>Add to Cart</button>
+        <button className={styles.addToCart} onClick={handleClick}>Add to Cart</button>
       </div>
     </div>
   )

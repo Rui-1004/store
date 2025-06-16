@@ -1,5 +1,5 @@
 import { useOutletContext } from "react-router-dom";
-import Card from "../Card";
+import Card from "../components/Card";
 import styles from "./Shop.module.css";
 
 export default function Shop() {

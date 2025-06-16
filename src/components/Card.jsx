@@ -48,7 +48,7 @@ export default function Card({product, handleCart}) {
   return(
     <div className={styles.card}>
       <div className={styles.imageWrapper}>
-        <img loading="lazy" src={product.image} alt="" />
+        <img loading="lazy" src={product.image} alt={product.title} />
       </div>
       <div className={styles.cardBody}>
         <h3>{product.title}</h3>

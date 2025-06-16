@@ -74,7 +74,7 @@ input[type=number] {
 
 .quantityMinus,
 .quantityPlus {
-  composes: btn from "./index.css";
+  composes: btn from global;
 }
 
 .quantityMinus:active,
